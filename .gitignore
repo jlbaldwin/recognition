@@ -1,0 +1,5 @@
+/app/Resources/**.aux
+/app/Resources/**.log
+/app/Resources/**.pdf
+/app/Resources/**.tex
+/app/config.php
