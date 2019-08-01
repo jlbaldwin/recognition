@@ -5,7 +5,7 @@ use PDO;
 class Database extends PDO
 {
     /**
-     * @var array Array of saved databases for reusing
+     * @var array ensure only a single database connection
      */
     protected static $instances = array();
 
@@ -68,6 +68,7 @@ class Database extends PDO
             $sql = "SELECT " . $sql;
         }
 
+        // if value is int use datatype PARAM_INT, otherwise string
         $stmt = $this->prepare($sql);
         foreach ($array as $key => $value) {
             if (is_int($value)) {
@@ -79,6 +80,7 @@ class Database extends PDO
 
         $stmt->execute();
 
+        // this is the returned response object
         if ($fetchMode === PDO::FETCH_CLASS) {
             return $stmt->fetchAll($fetchMode, $class);
         } else {
@@ -155,7 +157,7 @@ class Database extends PDO
      * @param  string $table table name
      * @param  array $data  array of columns and values
      * @param  array $where array of columns and values
-     * @param  integer $limit limit number of records
+     * @param  integer $limit default delete limit is 1, pass null to remove limit
      */
     public function delete($table, $where, $limit = 1)
     {

@@ -1,6 +1,6 @@
 <?php namespace System;
 /*
- * model - the base model
+ * Base model used to connect to db
  *
  */
 
@@ -10,7 +10,7 @@ use App\Helpers\Database;
 class BaseModel
 {
 	/**
-	 * hold the database connection
+	 * hold the database connection to be used by other models
 	 * @var object
 	 */
 	protected $db;
