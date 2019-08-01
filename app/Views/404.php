@@ -1,7 +1,5 @@
 <?php include(APPDIR.'Views/layouts/header.php');?>
-404 from /app/Views/404.php!
+404 - page not found.
 <?php include(APPDIR.'Views/layouts/footer.php');
-
-// TO DO: Improve this page
 
 ?>

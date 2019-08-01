@@ -3,8 +3,7 @@ if(file_exists('vendor/autoload.php')){
 	require 'vendor/autoload.php';
 
 } else {
-	echo "<h1>Jon, Please install via composer.json</h1>";
-	echo "<p>Install Composer instructions: <a href='https://getcomposer.org/doc/00-intro.md#globally'>https://getcomposer.org/doc/00-intro.md#globally</a></p>";
+	echo "<p>Install Composer. Instructions: <a href='https://getcomposer.org/doc/00-intro.md#globally'>https://getcomposer.org/doc/00-intro.md#globally</a></p>";
 	echo "<p>Once composer is installed navigate to the working directory in your terminal/command promt and enter 'composer install'</p>";
 	exit;
 }
@@ -19,28 +18,18 @@ define('ROOTDIR', realpath(__DIR__.'/') .DS);
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
+ * Different environments will set different levels of error reporting.
+ * By default development will show errors but production will hide them.
  *
- * You can load different configurations depending on your
- * current environment. Setting the environment also influences
- * things like logging and error reporting.
- *
- * This can be set to anything, but default usage is:
- *
- *     development
- *     production
- *
- * NOTE: If you change these, also change the error_reporting() code below
- *
+ * NOTE: When environment is changed, also change the error_reporting() 
+ * code below.
+ * Environment options are: development and production
  */
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
- *
- * Different environments will require different levels of error reporting.
- * By default development will show errors but production will hide them.
- * CREDIT TO: "Beginning PHP" by David Carr and Markus Gray
  */
 
 if (defined('ENVIRONMENT')){

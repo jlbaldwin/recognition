@@ -6,6 +6,8 @@ class Route
 {
     public function __construct($config)
     {
+        //save componets of the url request to vars
+        //class holds path to controller
         $url        = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         $controller = !empty($url[0]) ? $url[0] : $config['default_controller'];
         $method     = !empty($url[1]) ? $url[1] : $config['default_method'];
@@ -33,7 +35,7 @@ class Route
     public function not_found()
     {
         $view = new View();
-        return $view->render('404 from inside system/Route.php');
+        return $view->render('404');
     }
 }
 
