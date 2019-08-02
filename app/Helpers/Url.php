@@ -1,5 +1,10 @@
 <?php namespace App\Helpers;
 
+/*redirection method:
+* redirect() for home page
+* redirect('/mypage') for mypage	
+*/
+
 class Url
 {
     public static function redirect($path = '/')
