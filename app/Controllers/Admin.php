@@ -32,8 +32,7 @@ class Admin extends BaseController
 
     public function login()
     {
-        //echo password_hash('demo', PASSWORD_BCRYPT);
-
+        
         if (Session::get('logged_in')) {
             Url::redirect('/admin');
         }
@@ -103,19 +102,19 @@ class Admin extends BaseController
 
                 $mail = new PHPMailer(true);
 
-
-                //updates start here
+                $reset_config = \App\Config::get();
+                
                 $mail->SMTPDebug = 2;
                 $mail->isSMTP();
-                $mail->Host         = 'smtp.mail.com';
+                $mail->Host         = 'smtp.gmail.com';
                 $mail->SMTPAuth     = true;
-                $mail->Username     = 'xx@xx.com';
-                $mail->Password     = 'xxpw';
+                $mail->Username     = 'recogdemo@gmail.com';
+                $mail->Password     = $reset_config['email_cred'];
                 $mail->SMTPSecure   = 'tls';
                 $mail->Port         = 587;
                     
 
-                $mail->setFrom('fangrecognition@mail.com'); 
+                $mail->setFrom('recogdemo@gmail.com'); 
 
                 $mail->addAddress($email);
                 $mail->isHTML(true);
@@ -186,24 +185,31 @@ class Admin extends BaseController
   
                 $this->user->update($data, $where);
 
-                $data1 = $this->user->get_user($user->userId);        
+                //Redirect user to main login page after pw update
+                Url::redirect('/admin/login');
 
-                Session::set('logged_in', true);
-                Session::set('user_id', $user->userId);
+                /*This section of code automatically logs users in after
+                  their password is updated. Works locally in testing
+                  but not on aws
+                */  
+                // $data1 = $this->user->get_user($user->userId);        
+
+                // Session::set('logged_in', true);
+                // Session::set('user_id', $user->userId);
                 
-                Session::set('is_admin', $data1->isAdmin);
-                Session::set('first_name', $data1->firstName);
-                Session::set('last_name', $data1->lastName);
+                // Session::set('is_admin', $data1->isAdmin);
+                // Session::set('first_name', $data1->firstName);
+                // Session::set('last_name', $data1->lastName);
 
-                Session::set('success', "Password updated");
+                // Session::set('success', "Password updated");
                 
-                if(Session::get('is_admin') == 1){    
+                // if(Session::get('is_admin') == 1){    
 
-                    Url::redirect('/users');
-                }
-                else{
-                    Url::redirect('/awards/');   
-                }
+                //     Url::redirect('/users');
+                // }
+                // else{
+                //     Url::redirect('/awards/');   
+                // }
             }
 
         }
