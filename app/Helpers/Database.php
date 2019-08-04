@@ -183,7 +183,7 @@ class Database extends PDO
         $stmt = $this->prepare("DELETE FROM $table WHERE $whereDetails $uselimit");
 
         foreach ($where as $key => $value) {
-            $stmt->bindValue(":$key", $value);
+                $stmt->bindValue(":$key", $value);
         }
 
         $stmt->execute();

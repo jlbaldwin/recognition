@@ -77,7 +77,9 @@ class AwardClasses extends BaseController
             Url::redirect('/awardClasses');
         }
 
-        $where = ['classId' => $awardClass->classId];
+        //$where = ['classId' => $awardClass->classId];
+
+        $where = ['classId' => $classId];
 
         $this->awardClass->delete($where);
 

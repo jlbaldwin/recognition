@@ -22,15 +22,17 @@ class AwardClass extends BaseModel
 
     public function delete($where)
     {
-        $this->db->delete('awardClass', $where);
+        $result = $this->db->delete('awardClass', $where);
+        return $result;
     }
 
     public function get_awardClass($classId)
     {
         $data = $this->db->select('select c.classId, c.awardName, COUNT(*) numInUse
-        FROM awardClass c
+        FROM awardclass c
         INNER JOIN award a ON a.awardClassId = c.classId
-        WHERE classId = :classId', [':classId' => $classId]);
+        WHERE classId = :classId', ['classId' => $classId]);
+        
         return (isset($data[0]) ? $data[0] : null);
     }
 }
