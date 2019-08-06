@@ -6,9 +6,6 @@ include(APPDIR.'views/layouts/header.php');
 include(APPDIR.'views/layouts/errors.php');
 ?>
 
-<!-- <h1>Dashboard</h1>
-<p>This is the application dashboard.</p> -->
-
 <?php                 
 
     if(Session::get('is_admin') == 1) {    

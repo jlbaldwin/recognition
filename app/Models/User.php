@@ -21,14 +21,14 @@ class User extends BaseModel
         return $this->db->select('userId, DATE_SUB(timeCreated, INTERVAL 9 HOUR) AS timeCreated, needsPassword, password, email, firstName, lastName, signature, isAdmin, resetToken from users order by email');
     }
 
-    /*
-    public function get_user($userId)
+    //returns all Admin and User
+    public function get_all_user($userId)
     {
         $data = $this->db->select('* from users where userId = :userId', [':userId' => $userId]);
         return (isset($data[0]) ? $data[0] : null);
     }
-    */
-
+    
+    //returns User only (not Admin)
     public function get_user($userId)
     {
         $data = $this->db->select('select u.userId, DATE_SUB(u.timeCreated, INTERVAL 9 HOUR) AS timeCreated, u.needsPassword, u.password, u.email, u.firstName, u.lastName, u.signature, u.isAdmin, u.resetToken, COUNT(*) numInUse

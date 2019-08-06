@@ -24,10 +24,6 @@ class Admin extends BaseController
         if (! Session::get('logged_in')) {
             Url::redirect('/admin/login');
         }
-
-        $title = 'Dashboard';
-
-        $this->view->render('admin/index', compact('title'));
     }
 
     public function login()

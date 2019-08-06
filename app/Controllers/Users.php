@@ -40,20 +40,13 @@ class Users extends BaseController
             $password_confirm   = (isset($_POST['password_confirm']) ? $_POST['password_confirm'] : null);
             $isAdmin            = (isset($_POST['isAdmin']) ? $_POST['isAdmin'] : null);    
             $timeCreated        = date("Y-m-d H:i:s");
-//<<<<<<< confirmDeleteUser
-          
-            //using absolute path
-            //$imgDirectory       =   "C:\wamp64\www\adam2\app\Resources\images\\";
-//=======
 
             $imgDirectory       =   APPDIR."\Resources\images\\";
-//>>>>>>> master
             
             if($isAdmin==0)
             {
                 $fileName           = basename($_FILES['signature']['name']);
                 $signature          = $imgDirectory . $fileName;     
-                //move_uploaded_file($_FILES['signature']['tmp_name'], $signature);
     
                 if(!move_uploaded_file($_FILES['signature']['tmp_name'], $signature)){
                     $errors[] = 'Please add a Signature file.';
@@ -97,9 +90,7 @@ class Users extends BaseController
                 Session::set('success', 'User created');
 
                 Url::redirect('/users');
-
             }
-
         }
 
         $title = 'Add User';
@@ -112,7 +103,7 @@ class Users extends BaseController
             Url::redirect('/users');
         }
 
-        $user = $this->user->get_user($id);
+        $user = $this->user->get_all_user($id);
 
         if ($user == null) {
             Url::redirect('/404');
@@ -189,7 +180,9 @@ class Users extends BaseController
             Url::redirect('/404');
         }
 
-        $where = ['userId' => $user->userId];
+        //$where = ['userId' => $user->userId];
+
+        $where = ['userId' => $userId];
 
         $this->user->delete($where);
 

@@ -1,6 +1,9 @@
 <?php
 include(APPDIR.'views/layouts/header.php');
 include(APPDIR.'views/layouts/errors.php');
+use App\Helpers\Session;
+use App\Models\User;
+use App\Controllers\Users;
 ?>
 
 <h1>Edit User</h1>
@@ -26,6 +29,9 @@ include(APPDIR.'views/layouts/errors.php');
 
         </div>
 
+        <?php if(Session::get('user_id') == $user->userId){ 
+        echo '
+
         <div class="col-md-6">
 
             <div class="panel panel-primary">
@@ -46,6 +52,8 @@ include(APPDIR.'views/layouts/errors.php');
             </div>
 
         </div>
+
+        ';} ?>
 
     </div>
     Note: Please be careful to use real, working email addresses.  Bounced emails can cause our mail provider to temporarily disable email access.
